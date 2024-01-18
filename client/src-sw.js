@@ -28,7 +28,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
 // from in class 20
-registerRoute(({request}) => request.destination === 'script' || request.destination === 'style' || request.destination === 'worker',
+registerRoute(({request}) => {request.destination === 'script' || request.destination === 'style' || request.destination === 'worker'},
 new StaleWhileRevalidate({
   cacheName: 'asset-cache',
 
@@ -46,7 +46,7 @@ new StaleWhileRevalidate({
 
       maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
       
-    })
+    }),
   ],
 })
 );
